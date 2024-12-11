@@ -1,0 +1,107 @@
+@font-face {
+	font-family: Monserrat Bold;
+	src: url('./../../font/MontserratAlternates-Bold.ttf');
+}
+
+.header {
+	width: 100vw; height: 230px;
+	border-bottom: 2px solid #000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.title {
+	font-family: Monserrat Bold;
+    color: #000;
+    text-align: center;
+	padding-top: 2%;
+}
+
+.buttons {
+	width: 100%;
+    display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+    align-items: center;
+}
+
+.button {
+	height: 40px;
+    border: 4px #000 solid;
+	border-radius: 50px;
+    font-family: Monserrat Bold;
+    color: #000;
+    font-size: 15px;
+    cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.button a{
+	text-decoration: none;
+    color: #000;
+}
+
+.up {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	margin-bottom: 10px;
+}
+
+.down {
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+@media screen and (min-width: 425px) {
+	.title {
+		font-size: 50px;
+		margin-bottom: 4%;
+    }
+	
+    .button {
+		font-size: 15px;
+		width: 120px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+	.title {
+		font-size: 50px;
+		margin-bottom: 8%;
+    }
+	
+    .button {
+		font-size: 15px;
+		width: 120px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+	.title {
+		font-size: 48px;
+		margin-bottom: 10%;
+    }
+	
+    .button {
+		font-size: 13px;
+		width: 110px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+	.title {
+		font-size: 45px;
+		margin-bottom: 12%;
+    }
+	
+    .button {
+		font-size: 12px;
+		width: 90px;
+    }
+}

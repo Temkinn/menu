@@ -1,0 +1,147 @@
+@font-face {
+	font-family: Montserrat bold;
+	src: url("./font/MontserratAlternates-bold.ttf");
+}
+
+@font-face {
+	font-family: Montserrat semibold;
+	src: url("./font/MontserratAlternates-SemiBold.ttf");
+}
+
+@font-face {
+	font-family: Montserrat regular;
+	src: url("./font/MontserratAlternates-Regular.ttf");
+}
+
+.main {
+	width: 100vw; height: 100vh;
+}
+
+.openCart {
+	width: 70px; aspect-ratio: 1/1;
+	border-radius: 50px;
+	background-color: #EAA73E;
+	border: 1px #c08525 solid;
+	position: absolute;
+	bottom: 60px; right: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10000;
+}
+
+.openCartIcon{
+	z-index: 10000;
+	width: 60%; height: 60%;
+    cursor: pointer;
+}
+
+.closeCart {
+	width: 70px; aspect-ratio: 1/1;
+	position: absolute;
+	top: 0px; left: -5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.closeCart img{
+	width: 50px; aspect-ratio: 1/1;
+}
+
+.menu {
+	width: 100%; height: calc(100vh - 230px);
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+	font-family: Montserrat bold;
+	font-size: 50px;
+	overflow-y: auto;
+}
+
+.black {
+	padding-top: 10px;
+	margin-bottom: 30px;
+}
+
+.item {
+	min-height: 500px; aspect-ratio: 3/4;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.photo {
+	height: 62.5%; aspect-ratio: 1/1;
+	align-self: center;
+	border-radius: 20px;
+	margin-bottom: 10px;
+}
+
+.photo img {
+	width: 100%; height: 100%;
+	border-radius: 20px;
+}
+
+.name {
+	max-width: 280px;
+	font-family: Montserrat semibold;
+    font-size: 22px;
+	padding-left: 30px;
+	margin-bottom: 10px;
+}
+
+.g {
+	font-family: Montserrat regular;
+    font-size: 20px;
+	padding-left: 30px;
+	margin-bottom: 3px;
+}
+
+.price {
+	font-family: Montserrat regular;
+    font-size: 20px;
+	padding-left: 30px;
+}
+
+.addToCart {
+	width: 130px; height: 60px;
+	position: absolute;
+	bottom: 16%; right: 30px;
+	display: flex;
+	gap: 10px;
+}
+
+.add {
+	z-index: 5;
+	position: absolute;
+	right: 0;
+	background-image: url('./assets/plus.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position-x: 50%;
+	background-position-y: 50%;
+	background-size: 30px;
+	width: 130px; height: 60px;
+    background-color: #EAA73E;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	transition: .3s linear all;
+	font-size: 35px;
+}
+
+
+
+.remove {
+	z-index: 2;
+	position: absolute;
+	width: 60px; aspect-ratio: 1/1;
+    background-color: #EAA73E;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	transition: .3s linear all;
+}
