@@ -9,8 +9,6 @@ import menu from "./menu.js";
 import openCart from "./assets/cart.png";
 import cross from './assets/cross.png'
 import back from './assets/back.png'
-import plus from "./assets/plus.png"
-
 
 
 function App() {
@@ -18,6 +16,11 @@ function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() =>{
+    for(let i = 0; i < items.length; i++){
+      if(items[i].amount == 0){
+        setItems(items.filter(item => item.amount != 0))
+      }
+    }
     mapping(items)
   }, [items])
 
@@ -56,9 +59,7 @@ function App() {
 
 
   function add({click, id, name, price, photo}){
-    // click.target.styles
-    console.log(click.target);
-    click.target.style.width = "60px";
+    click.target.style.width = "46%"
     if (items.some(item => item.id === id)  ) {
       const updatedItems = items.map(item =>
         item.id === id? {...item, amount: item.amount + 1 } : item
@@ -67,6 +68,27 @@ function App() {
     } else {
       const newItems = [...items, { id: id, name: name, price: price, photo: photo, amount: 1 }];
       setItems(newItems)
+    }
+  }
+
+  function remove({click, id}){
+    if (items.some(item => item.id === id)  ) {
+      const item = items.filter(item => item.id === id)[0]
+
+      console.log(item);
+      if(item.amount >= 1){
+        const updatedItems = items.map(item =>
+          item.id === id? {...item, amount: item.amount - 1 } : item
+        );
+        setItems(updatedItems);
+      } else {
+        console.log('none');
+      }
+
+
+
+    } else {
+      console.log("there is no such items");
     }
 
   }
@@ -117,10 +139,11 @@ function App() {
                     <div className={styles.price}>{price} руб.</div>
                   </div>
                   <div className={styles.addToCart}>
-                    <div className={styles.remove}></div>
-                    {/* <h2>{amount}</h2> */}
-                    <div className={styles.add} onClick={(click) => add({click, id, name, price, photo})}>
-                    </div>
+                    <div className={styles.remove} onClick={(click) => remove({click, id})}></div>
+                    <div className={styles.add} onClick={(click) => add({click, id, name, price, photo})}></div>
+                  </div>
+                  <div className={styles.amount}>
+                      {items.some(item => item.id === id)? items.filter(item => item.id === id)[0].amount : 0}
                   </div>
                 </div>
               );

@@ -23,6 +23,20 @@ const menu = {
 		g: 250,
 		photo: blackPhotos.classic,
 	  },
+	  {
+		id: 'espresso',
+		name: "Эспрессо",
+		price: 4.5,
+		g: 50,
+		photo: blackPhotos.classic,
+	  },
+	  {
+		id: 'v60',
+		name: "V60; Aeropress",
+		price: 6,
+		g: 230,
+		photo: blackPhotos.classic,
+	  },
 	]
 }
 

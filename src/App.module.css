@@ -122,14 +122,13 @@
 	background-position-x: 50%;
 	background-position-y: 50%;
 	background-size: 30px;
-	width: 130px; height: 60px;
+	height: 60px; width: 100%;
     background-color: #EAA73E;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-	transition: .3s linear all;
-	font-size: 35px;
+	transition: .3s ease-in-out all;
 }
 
 
@@ -138,10 +137,24 @@
 	z-index: 2;
 	position: absolute;
 	width: 60px; aspect-ratio: 1/1;
+	background-image: url('./assets/minus.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position-x: 50%;
+	background-position-y: 50%;
+	background-size: 30px;
     background-color: #EAA73E;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 	transition: .3s linear all;
+}
+
+.amount {
+	position: absolute;
+	font-variant-numeric: tabular-nums;
+	top: 270px; right: 50px;
+	color: #fff;
+	font-size: 30px;
 }
