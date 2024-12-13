@@ -1,6 +1,11 @@
 .background {
 	width: 100vw; height: 100vh;
-	background-image: url('./../../assets/background.png');
+	/* background-image: url('./../../assets/background.png'); */
+	background-color: #DFE4F0;
+    /* background-image: linear-gradient(180deg, #f1f1f1 0%, #e6e6e6 100%); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 	z-index: -1;
 	position: fixed;
 }
