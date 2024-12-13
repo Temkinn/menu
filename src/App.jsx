@@ -99,7 +99,7 @@ function App() {
       }
       if (item.amount == 1) {
         const add_b = document.getElementsByName(id);
-        add_b[0].style.width = "130px";
+        add_b[0].style.width = "100%";
       }
     }
   }
