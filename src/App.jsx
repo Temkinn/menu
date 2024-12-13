@@ -195,7 +195,7 @@ function App() {
           >
             Оформить заказ
           </button>
-        </>
+        </div>
       ) : (
         <>
           <Background />
