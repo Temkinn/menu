@@ -169,8 +169,6 @@
 
 /* Cart */
 
-
-
 .total, .sum {
 	font-family: Montserrat regular;
     font-size: 22px;
@@ -218,10 +216,13 @@
 	text-decoration: line-through;
 }
 
-@media screen and (width <= 320px) {
+@media screen and (width <= 350px) {
 	.addToCart{
 		width: 100px;
 		height: 50px;
+	}
+	.discount div {
+		color: #000;
 	}
 	
 }
