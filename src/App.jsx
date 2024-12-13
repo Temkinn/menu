@@ -132,7 +132,7 @@ function App() {
   return (
     <div className={styles.main}>
       {cart ? (
-        <>
+        <div className={styles.cartContainer}>
           <Background />
           <div className={styleses.cart}>
             <div
