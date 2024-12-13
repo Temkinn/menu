@@ -137,12 +137,12 @@ function App() {
           <div className={styleses.cart}>
             <div
               className={styleses.head}>
+              <div className={styles.closeCart} onClick={() => setCart(!cart)}>
+                <img src={back} alt="Закрыть корзину" />
+              </div>
               Корзина
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
-          </div>
-          <div className={styles.closeCart} onClick={() => setCart(!cart)}>
-            <img src={back} alt="Закрыть корзину" />
           </div>
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):
