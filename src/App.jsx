@@ -46,7 +46,7 @@ function App() {
     } else {
       return arg.map(({ id, photo, name, price, amount }) => (
         <div key={name} name={id} id={id} className={styleses.item}>
-          <div className={styleses.photoContainer}>
+          <div className={styleses.photoContainer} >
             <img src={photo} alt="Товар" className={styleses.photo} />
           </div>
           <div className={styleses.info}>
@@ -207,11 +207,27 @@ function App() {
             >
               Black
             </p>
-            {menu.black.map(({ id, name, g, price, photo }) => {
+            {menu.black.map(({ id, name, g, price, photo, description, kpfc }) => {
               return (
                 <div key={id} className={styles.item}>
                   <div className={styles.photo}>
-                    <img src={photo} alt={name} />
+                    <div className={styles.photoInner}></div>
+                    <div className={styles.front}>
+                      <img src={photo} alt={name} />
+                      <div className={styles.amount}>
+                        {items.some((item) => item.id === id)
+                          ? items.filter((item) => item.id === id)[0].amount
+                          : 0}
+                      </div>
+                    </div>
+                    <div className={styles.desc}>
+                      <div className={styles.description}>
+                        {description}
+                      </div>
+                      <div className={styles.kpfc}>
+                        КБЖУ: {kpfc} 
+                      </div>
+                    </div>
                   </div>
                   <div className={styles.info}>
                     <div className={styles.name}>{name}</div>
@@ -230,11 +246,6 @@ function App() {
                         add({ click, id, name, price, photo })
                       }
                     ></div>
-                  </div>
-                  <div className={styles.amount}>
-                    {items.some((item) => item.id === id)
-                      ? items.filter((item) => item.id === id)[0].amount
-                      : 0}
                   </div>
                 </div>
               );

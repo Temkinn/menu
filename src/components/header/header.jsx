@@ -13,6 +13,7 @@ export default function Header({black, milk, other, tea, breakfast}){
 				<div className={styles.down}>
 					<div className={styles.button}><a href="#tea">Tea</a></div>
 					<div className={styles.button}><a href="#breakfast">Завтраки</a></div>
+					<div className={styles.button}><a href="#sweet">Сладкое</a></div>
 				</div>
 			</div>
         </header>

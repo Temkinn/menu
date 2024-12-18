@@ -83,16 +83,63 @@
 }
 
 .photo {
-	height: 62.5%; aspect-ratio: 1/1;
+	height: 63%; aspect-ratio: 1;
 	align-self: center;
 	border-radius: 20px;
 	margin-bottom: 10px;
+	perspective: 1000px;
+	cursor: pointer;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
 }
+
+.photo:hover {
+	transform: rotateY(180deg);
+}
+
 
 .photo img {
 	width: 100%; height: 100%;
 	border-radius: 20px;
+	margin-bottom: 10px;
+	perspective: 1000px;
+	cursor: pointer;
+	transition: transform .5s;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
 }
+
+.desc {
+	width: 100%; height: 100%;
+	top: 0; left: 0;
+	position: absolute;
+	font-family: Montserrat regular;
+	font-size: 14px;
+	backface-visibility: hidden;
+	transform: rotateY(180deg);
+	background-color: #DFE4F0;
+	border-radius: 20px;
+}
+
+.kpfc {
+    bottom: 20px; left: 0;
+    position: absolute;
+    font-family: Montserrat regular;
+    font-size: 14px;
+    background-color: #DFE4F0;
+    border-radius: 20px;
+}
+
+.description {
+	padding-left: 3px;
+	padding-top: 5px;
+	max-width: 100%;
+    font-family: Montserrat regular;
+    font-size: 16px;
+}
+
+
 
 .name {
 	max-width: 280px;
@@ -164,7 +211,7 @@
 .amount {
 	position: absolute;
 	font-variant-numeric: tabular-nums;
-	top: 52%; right: 50px;
+	bottom: 10px; right: 25px;
 	color: #fff;
 	font-size: 30px;
 }
