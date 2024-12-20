@@ -24,6 +24,11 @@
 	margin-bottom: 20px;
 }
 
+.cart {
+	display: flex;
+	flex-direction: column;
+}
+
 .items {
 	width: 100%; height: 50vh;
 	display: flex;

@@ -13,8 +13,7 @@ import back from "./assets/back.png";
 function App() {
   const [cart, setCart] = useState(false);
   const [items, setItems] = useState([]);
-  const [discount, setDiscount] = useState(0);
-  const tg = window.Telegram.WebApp
+  const tg = window.Telegram.WebApp;
 
   useEffect(() => {
     for (let i = 0; i < items.length; i++) {
@@ -23,17 +22,6 @@ function App() {
       }
     }
     mapping(items);
-
-    const sum = items.reduce((sum, item) => sum + item.price * item.amount, 0);
-    if (sum == 0) {
-      setDiscount(0);
-    }
-    if (sum > 0 && sum < 20) {
-      setDiscount(5);
-    }
-    if (sum >= 50) {
-      setDiscount(7);
-    }
   }, [items]);
 
   function mapping(arg) {
@@ -46,7 +34,7 @@ function App() {
     } else {
       return arg.map(({ id, photo, name, price, amount }) => (
         <div key={name} name={id} id={id} className={styleses.item}>
-          <div className={styleses.photoContainer} >
+          <div className={styleses.photoContainer}>
             <img src={photo} alt="Товар" className={styleses.photo} />
           </div>
           <div className={styleses.info}>
@@ -58,7 +46,7 @@ function App() {
             className={styleses.delete}
             onClick={(info) => {
               setItems(items.filter((el) => el.id !== info.target.name));
-            }} 
+            }}
           >
             <img
               name={id}
@@ -104,29 +92,23 @@ function App() {
     }
   }
 
-
-
-
-  function buy(){
-    if(items.length != 0){
-      const total = items.reduce((sum, item) => sum + item.price * item.amount, 0) -
-      (
-        (items.reduce(
-          (sum, item) => sum + item.price * item.amount,
-          0
-        ) *
-          discount) /
-        100
-      ).toFixed(2)
+  function buy() {
+    if (items.length != 0) {
+      const total =
+        items.reduce((sum, item) => sum + item.price * item.amount, 0) -
+        (
+          (items.reduce((sum, item) => sum + item.price * item.amount, 0) *
+            discount) /
+          100
+        ).toFixed(2);
 
       const sum = items
-      .reduce((sum, item) => sum + item.price * item.amount, 0)
-      .toFixed(2)
-      tg.sendData([items, [sum, (sum*discount/100).toFixed(2), total]])
+        .reduce((sum, item) => sum + item.price * item.amount, 0)
+        .toFixed(2);
+      tg.sendData([items, [sum, ((sum * discount) / 100).toFixed(2), total]]);
       setItems([]);
     }
   }
-
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   return (
@@ -135,14 +117,14 @@ function App() {
         <div className={styles.cartContainer}>
           <Background />
           <div className={styleses.cart}>
-            <div
-              className={styleses.head}>
+            <div className={styleses.head}>
               <div className={styles.closeCart} onClick={() => setCart(!cart)}>
                 <img src={back} alt="Закрыть корзину" />
               </div>
               Корзина
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
+            <input type="text" className={styles.name} />
           </div>
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):
@@ -154,45 +136,7 @@ function App() {
             </div>
           </div>
 
-          <div className={styles.discount}>
-            Скидка:{" "}
-            <div>
-              {" "}
-              -
-              {(
-                (items.reduce(
-                  (sum, item) => sum + item.price * item.amount,
-                  0
-                ) *
-                  discount) /
-                100
-              ).toFixed(2)}{" "}
-              руб.{" "}
-            </div>
-          </div>
-
-          <div className={styles.total}>
-            Итого:
-            <div>
-              {(
-                items.reduce((sum, item) => sum + item.price * item.amount, 0) -
-                (
-                  (items.reduce(
-                    (sum, item) => sum + item.price * item.amount,
-                    0
-                  ) *
-                    discount) /
-                  100
-                ).toFixed(2)
-              ).toFixed(2)}{" "}
-              руб.
-            </div>
-          </div>
-          <button
-            className={styles.buy}
-            id='order'
-            onClick={() => buy()}
-          >
+          <button className={styles.buy} id="order" onClick={() => buy()}>
             Оформить заказ
           </button>
         </div>
@@ -201,55 +145,50 @@ function App() {
           <Background />
           <Header />
           <div className={styles.menu}>
-            <p
-              className={styles.black}
-              id="black"
-            >
+            <p className={styles.black} id="black">
               Black
             </p>
-            {menu.black.map(({ id, name, g, price, photo, description, kpfc }) => {
-              return (
-                <div key={id} className={styles.item}>
-                  <div className={styles.photo}>
-                    <div className={styles.photoInner}></div>
-                    <div className={styles.front}>
-                      <img src={photo} alt={name} />
-                      <div className={styles.amount}>
-                        {items.some((item) => item.id === id)
-                          ? items.filter((item) => item.id === id)[0].amount
-                          : 0}
+            {menu.black.map(
+              ({ id, name, g, price, photo, description, kpfc }) => {
+                return (
+                  <div key={id} className={styles.item}>
+                    <div className={styles.photo}>
+                      <div className={styles.photoInner}></div>
+                      <div className={styles.front}>
+                        <img src={photo} alt={name} />
+                        <div className={styles.amount}>
+                          {items.some((item) => item.id === id)
+                            ? items.filter((item) => item.id === id)[0].amount
+                            : 0}
+                        </div>
+                      </div>
+                      <div className={styles.desc}>
+                        <div className={styles.description}>{description}</div>
+                        <div className={styles.kpfc}>КБЖУ: {kpfc}</div>
                       </div>
                     </div>
-                    <div className={styles.desc}>
-                      <div className={styles.description}>
-                        {description}
-                      </div>
-                      <div className={styles.kpfc}>
-                        КБЖУ: {kpfc} 
-                      </div>
+                    <div className={styles.info}>
+                      <div className={styles.name}>{name}</div>
+                      <div className={styles.g}>{g} мл.</div>
+                      <div className={styles.price}>{price} руб.</div>
+                    </div>
+                    <div className={styles.addToCart}>
+                      <div
+                        className={styles.remove}
+                        onClick={(click) => remove({ click, id })}
+                      ></div>
+                      <div
+                        className={styles.add}
+                        name={id}
+                        onClick={(click) =>
+                          add({ click, id, name, price, photo })
+                        }
+                      ></div>
                     </div>
                   </div>
-                  <div className={styles.info}>
-                    <div className={styles.name}>{name}</div>
-                    <div className={styles.g}>{g} мл.</div>
-                    <div className={styles.price}>{price} руб.</div>
-                  </div>
-                  <div className={styles.addToCart}>
-                    <div
-                      className={styles.remove}
-                      onClick={(click) => remove({ click, id })}
-                    ></div>
-                    <div
-                      className={styles.add}
-                      name={id}
-                      onClick={(click) =>
-                        add({ click, id, name, price, photo })
-                      }
-                    ></div>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
           <div className={styles.openCart} onClick={() => setCart(!cart)}>
             <img src={openCart} alt="Корзина" className={styles.openCartIcon} />
