@@ -124,7 +124,8 @@ function App() {
               Корзина
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
-            <input type="text" className={styles.name} />
+            <input type="text" className={styles.nickname} 
+            placeholder='Имя'/>
           </div>
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):

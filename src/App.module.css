@@ -88,7 +88,7 @@
 }
 
 .photo {
-	height: 63%; aspect-ratio: 1;
+	height: 63%; aspect-ratio: 1/1;
 	align-self: center;
 	border-radius: 20px;
 	margin-bottom: 10px;
@@ -223,7 +223,7 @@
 
 /* Cart */
 
-.name{
+.nickname{
 	align-self: center;
 	font-size: 20px;
 	border-radius: 20px;
