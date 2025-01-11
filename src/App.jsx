@@ -14,6 +14,7 @@ function App() {
   const [cart, setCart] = useState(false);
   const [items, setItems] = useState([]);
   const tg = window.Telegram.WebApp;
+  const user = window.Telegram.WebAppUser;
 
   useEffect(() => {
     for (let i = 0; i < items.length; i++) {
@@ -118,14 +119,16 @@ function App() {
           <Background />
           <div className={styleses.cart}>
             <div className={styleses.head}>
-              <div className={styles.closeCart} onClick={() => setCart(!cart)}>
+              <div className={styles.closeCart} onClick={() => {
+                console.log(window.Telegram);
+                setCart(!cart)
+                }}>
                 <img src={back} alt="Закрыть корзину" />
               </div>
               Корзина
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
-            <input type="text" className={styles.nickname} 
-            placeholder='Имя'/>
+            <h1>{user.id}</h1>
           </div>
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):
