@@ -127,7 +127,9 @@ function App() {
               Корзина
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
-            {/* <h1>{tg.initDataUnsafe.user.first_name}</h1> */}
+
+            <h1>{tg.initDataUnsafe.user.username}</h1>
+            
           </div>
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):
