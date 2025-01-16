@@ -128,7 +128,6 @@ function App() {
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
 
-            <h1>{tg.initDataUnsafe.user.username}</h1>
             
           </div>
           <div className={styles.sum}>
