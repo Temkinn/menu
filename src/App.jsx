@@ -132,7 +132,7 @@ function App() {
                 {
                   () => {
                     if (tg.initDataUnsafe | tg.initData){
-                      return <h1> {tg.initDataUnsafe.user.id} </h1>
+                      return <h1> kwa </h1>
                     }
                   }
                 }
