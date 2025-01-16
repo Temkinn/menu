@@ -137,7 +137,7 @@ function App() {
           {
             data ? (
               <div>
-                {data}
+                {data.id}
               </div>
             ) : (
               <div>
