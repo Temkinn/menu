@@ -131,7 +131,7 @@ function App() {
 
                 {
                   () => {
-                    if (tg.initDataUnsafe | tg.initData){
+                    if (tg.initDataUnsafe || tg.initData){
                       return <h1> kwa </h1>
                     }
                   }
