@@ -13,9 +13,15 @@ import back from "./assets/back.png";
 function App() {
   const [cart, setCart] = useState(false);
   const [items, setItems] = useState([]);
+  const [data, setData] = useState()
   const tg = window.Telegram.WebApp;
 
   useEffect(() => {
+    if(tg.initDataUnsafe.user) {
+      setData(tg.initDataUnsafe.user)
+      console.log(data);
+    }
+
     for (let i = 0; i < items.length; i++) {
       if (items[i].amount == 0) {
         setItems(items.filter((item) => item.amount != 0));
@@ -128,15 +134,17 @@ function App() {
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
           </div>
-
-                {
-                  () => {
-                    if (tg.initDataUnsafe || tg.initData){
-                      return <h1> kwa </h1>
-                    }
-                  }
-                }
-
+          {
+            data ? (
+              <div>
+                {data}
+              </div>
+            ) : (
+              <div>
+                Loading...
+              </div>
+            )
+          }
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):
             <div>
