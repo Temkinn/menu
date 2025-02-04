@@ -1,16 +1,16 @@
 @font-face {
 	font-family: Monserrat;
-	src: url("./../../font/MontserratAlternates-Regular.ttf");
+	src: url("./../../font/MontserratAlternates-Regular.woff2");
 }
 
 @font-face {
 	font-family: Monserrat bold;
-	src: url("./../../font/MontserratAlternates-Bold.ttf");
+	src: url("./../../font/MontserratAlternates-Bold.woff2");
 }
 
 @font-face {
 	font-family: Monserrat semibold;
-	src: url("./../../font/MontserratAlternates-SemiBold.ttf");
+	src: url("./../../font/MontserratAlternates-SemiBold.woff2");
 }
 
 .head {

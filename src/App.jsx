@@ -17,10 +17,6 @@ function App() {
   const tg = window.Telegram.WebApp;
 
   useEffect(() => {
-    if(tg.initDataUnsafe.user) {
-      setData(tg.initDataUnsafe.user)
-      console.log(data);
-    }
 
     for (let i = 0; i < items.length; i++) {
       if (items[i].amount == 0) {
@@ -103,15 +99,13 @@ function App() {
       const total =
         items.reduce((sum, item) => sum + item.price * item.amount, 0) -
         (
-          (items.reduce((sum, item) => sum + item.price * item.amount, 0) *
-            discount) /
-          100
+          (items.reduce((sum, item) => sum + item.price * item.amount, 0)) / 100
         ).toFixed(2);
 
       const sum = items
         .reduce((sum, item) => sum + item.price * item.amount, 0)
         .toFixed(2);
-      tg.sendData([items, [sum, ((sum * discount) / 100).toFixed(2), total]]);
+      tg.sendData([items, [sum, total]]);
       setItems([]);
     }
   }
@@ -134,17 +128,6 @@ function App() {
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
           </div>
-          {
-            data ? (
-              <div>
-                {data.id}
-              </div>
-            ) : (
-              <div>
-                Loading...
-              </div>
-            )
-          }
           <div className={styles.sum}>
             Товары({items.reduce((all, item) => all + item.amount, 0)}):
             <div>
