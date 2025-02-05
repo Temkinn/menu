@@ -13,17 +13,29 @@ import back from "./assets/back.png";
 function App() {
   const [cart, setCart] = useState(false);
   const [items, setItems] = useState([]);
-  const [data, setData] = useState()
+  const [total, setTotal] = useState(0);
+  const [data, setData] = useState("");
   const tg = window.Telegram.WebApp;
 
   useEffect(() => {
-
+    mapping(items);
     for (let i = 0; i < items.length; i++) {
       if (items[i].amount == 0) {
         setItems(items.filter((item) => item.amount != 0));
       }
     }
-    mapping(items);
+    setTotal(
+      items.reduce((sum, item) => sum + item.price * item.amount, 0).toFixed(2)
+    );
+    setData(
+      `${items
+        .map((item) => {
+          return `${item.name} (${item.price} руб.) - ${item.amount} шт. = ${
+            item.price * item.amount
+          } руб.`;
+        })
+        .join("\n")}\nВсего ${items.reduce((sum, item) => sum + item.price * item.amount, 0).toFixed(2)} руб.\nПриготовить {}`
+    );
   }, [items]);
 
   function mapping(arg) {
@@ -62,8 +74,7 @@ function App() {
     }
   }
 
-  function add({ click, id, name, price, photo }) {
-    click.target.style.width = "46%";
+  function add({id, name, price, photo }) {
     if (items.some((item) => item.id === id)) {
       const updatedItems = items.map((item) =>
         item.id === id ? { ...item, amount: item.amount + 1 } : item
@@ -72,7 +83,7 @@ function App() {
     } else {
       const newItems = [
         ...items,
-        { id: id, name: name, price: price, photo: photo, amount: 1 },
+        { id: id, name: name, price: price, photo: photo, amount: 1 }
       ];
       setItems(newItems);
     }
@@ -87,25 +98,16 @@ function App() {
         );
         setItems(updatedItems);
       }
-      if (item.amount == 1) {
-        const add_b = document.getElementsByName(id);
-        add_b[0].style.width = "100%";
-      }
     }
   }
 
   function buy() {
     if (items.length != 0) {
-      const total =
-        items.reduce((sum, item) => sum + item.price * item.amount, 0) -
-        (
-          (items.reduce((sum, item) => sum + item.price * item.amount, 0)) / 100
-        ).toFixed(2);
-
-      const sum = items
-        .reduce((sum, item) => sum + item.price * item.amount, 0)
-        .toFixed(2);
-      tg.sendData([items, [sum, total]]);
+      setTotal(
+        items.reduce((sum, item) => sum + item.price * item.amount, 0).toFixed(2)
+      );
+      console.log(data);
+      // tg.sendData(data)
       setItems([]);
     }
   }
@@ -118,26 +120,38 @@ function App() {
           <Background />
           <div className={styleses.cart}>
             <div className={styleses.head}>
-              <div className={styles.closeCart} onClick={() => {
-                console.log(window.Telegram);
-                setCart(!cart)
-                }}>
+              <div
+                className={styles.closeCart}
+                onClick={() => {
+                  setCart(!cart);
+                }}
+              >
                 <img src={back} alt="Закрыть корзину" />
               </div>
               Корзина
             </div>
             <div className={styleses.items}>{mapping(items)}</div>
           </div>
-          <div className={styles.sum}>
-            Товары({items.reduce((all, item) => all + item.amount, 0)}):
-            <div>
-              {items
-                .reduce((sum, item) => sum + item.price * item.amount, 0)
-                .toFixed(2)}{" "}
-              руб.
+          <div className={styles.timeContainer}>
+            <div className={styles.time}>
+              <input type="radio" id="now" name="drone" value="huey" />
+              <label unselectable="true" htmlFor="now">Сейчас</label>
+            </div>
+
+            <div className={styles.time}>
+              <input type="radio" id="15min" name="drone" value="dewey" />
+              <label unselectable="true" htmlFor="15min">15 минут</label>
+            </div>
+
+            <div className={styles.time}>
+              <input type="radio" id="30min" name="drone" value="louie" />
+              <label unselectable="true" htmlFor="30min">30 минут</label>
             </div>
           </div>
-
+          <div className={styles.sum}>
+            Товары({items.reduce((all, item) => all + item.amount, 0)}):
+            <div>{total} руб.</div>
+          </div>
           <button className={styles.buy} id="order" onClick={() => buy()}>
             Оформить заказ
           </button>
@@ -178,6 +192,15 @@ function App() {
                       <div
                         className={styles.remove}
                         onClick={(click) => remove({ click, id })}
+                        style={
+                          items.some((item) => item.id === id)
+                            ? {
+                                opacity: 1
+                              }
+                            : {
+                                opacity: 0
+                              }
+                        }
                       ></div>
                       <div
                         className={styles.add}
@@ -192,7 +215,13 @@ function App() {
               }
             )}
           </div>
-          <div className={styles.openCart} onClick={() => setCart(!cart)}>
+          <div
+            className={styles.openCart}
+            style={
+              items.length !== 0 ? { opacity: 1 } : { opacity: 0, width: 0 }
+            }
+            onClick={() => setCart(!cart)}
+          >
             <img src={openCart} alt="Корзина" className={styles.openCartIcon} />
           </div>
         </>

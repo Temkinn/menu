@@ -33,6 +33,7 @@
 	justify-content: center;
 	align-items: center;
 	z-index: 10000;
+	transition: all .4s ease-in-out;
 }
 
 .openCartIcon{
@@ -184,13 +185,18 @@
 	background-position-x: 50%;
 	background-position-y: 50%;
 	background-size: 30px;
-	height: 100%; width: 100%;
+	height: 100%; aspect-ratio: 1/1;
     background-color: #EAA73E;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-	transition: .25s ease-in-out all;
+	transition: .2s ease-in-out opacity;
+}
+
+.add:active, 
+.remove:active {
+	opacity: 0.7;
 }
 
 
@@ -210,6 +216,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+	transition: opacity .4s ease-in-out;
 }
 
 .amount {
@@ -251,8 +258,9 @@
 
 
 .buy {
+	position: absolute;
+	bottom: 40px; align-self: center;
 	width: 80vw; height: 60px;
-	justify-self: center;
     background-color: #266665;
     border: 1px #1d4948 solid;
     border-radius: 20px;
@@ -264,6 +272,40 @@
     color: #fff;
 }
 
+.timeContainer {
+	width: 96vw;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	gap: 30px;
+	flex-wrap: wrap;
+	font-family: Montserrat bold;
+	margin-bottom: 30px;
+	cursor: pointer;
+}
+
+.time {
+	text-align: center;
+	width: 24vw; height: 40px;
+    border-radius: 20px;
+    border: 1px #1d4948 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	font-size: 14px;
+    font-family: Montserrat semibold;
+    cursor: pointer;
+}
+
+.time input {
+	display: none;
+}
+
+
+.time:has(input:checked) {
+	background-color: #266665;
+	color: #fff;
+}
 
 @media screen and (width <= 350px) {
 	.addToCart{
